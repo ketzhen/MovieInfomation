@@ -1,0 +1,22 @@
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\bin\Debug\MovieSample.exe.config
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\bin\Debug\MovieDb
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\bin\Debug\MovieSample.exe
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\bin\Debug\MovieSample.pdb
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\bin\Debug\System.Data.SQLite.dll
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\obj\x86\Debug\MovieSample.csprojResolveAssemblyReference.cache
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\obj\x86\Debug\MovieSample.Form1.resources
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\obj\x86\Debug\MovieSample.Properties.Resources.resources
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\obj\x86\Debug\MovieSample.csproj.GenerateResource.Cache
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\obj\x86\Debug\MovieSample.exe
+E:\AshishData\AshishWork\Ashish Recent Work\MovieSample\MovieSample\obj\x86\Debug\MovieSample.pdb
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\bin\Debug\MovieSample.exe.config
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\obj\x86\Debug\MovieSample.exe
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\obj\x86\Debug\MovieSample.pdb
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\bin\Debug\MovieDb
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\bin\Debug\MovieSample.exe
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\bin\Debug\MovieSample.pdb
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\bin\Debug\System.Data.SQLite.dll
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\obj\x86\Debug\MovieSample.csprojResolveAssemblyReference.cache
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\obj\x86\Debug\MovieSample.Form1.resources
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\obj\x86\Debug\MovieSample.Properties.Resources.resources
+C:\Users\TECHPRO\Desktop\MovieSample\MovieSample\obj\x86\Debug\MovieSample.csproj.GenerateResource.Cache
