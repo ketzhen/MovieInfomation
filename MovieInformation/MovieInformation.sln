@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieInformation", "MovieSample\MovieInformation.csproj", "{D1EB946C-EC34-41B8-981F-D789FA3E759A}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MovieInformationSetup", "MovieInformationSetup\MovieInformationSetup.vdproj", "{B49445A8-CFDD-4FF4-BF91-BF4884D65D24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,8 @@ Global
 		{D1EB946C-EC34-41B8-981F-D789FA3E759A}.Debug|x86.Build.0 = Debug|x86
 		{D1EB946C-EC34-41B8-981F-D789FA3E759A}.Release|x86.ActiveCfg = Release|x86
 		{D1EB946C-EC34-41B8-981F-D789FA3E759A}.Release|x86.Build.0 = Release|x86
+		{B49445A8-CFDD-4FF4-BF91-BF4884D65D24}.Debug|x86.ActiveCfg = Debug
+		{B49445A8-CFDD-4FF4-BF91-BF4884D65D24}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

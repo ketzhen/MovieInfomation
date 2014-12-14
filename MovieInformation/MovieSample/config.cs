@@ -8,6 +8,7 @@ namespace SQLiteHelper
 {
     class config
     {
+
         public static string DatabaseFile =Path.Combine(Application.StartupPath, "MovieDatabase");
         public static string DataSource
         {

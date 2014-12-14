@@ -9,7 +9,12 @@ namespace MovieSample
     {
         public int MovieTypeMethod(string typeMoveiString)
         {
+
             int type = 0;
+            try
+            {
+
+           
             if (typeMoveiString == "Adventure") type = 1;
             if (typeMoveiString == "Comedy") type = 2;
             if (typeMoveiString == "Action") type = 3;
@@ -22,6 +27,13 @@ namespace MovieSample
             if (typeMoveiString == "Horor") type = 10;
             if (typeMoveiString == "Crime") type = 11;
             if (typeMoveiString == "Biografy") type = 12;
+            
+            }
+            catch (Exception)
+            {
+
+               
+            }
             return type;
         }
     }

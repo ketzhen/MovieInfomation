@@ -13,6 +13,10 @@ namespace MovieSample
         
         internal void InsertDataInDatabase(string cmbType,string title,string publisherM,string yearM,string checkQueryType)
         {
+            try
+            {
+
+          
             string typeMoveiString;
             try
             {
@@ -61,9 +65,19 @@ namespace MovieSample
 
 
             }
+            }
+            catch (Exception)
+            {
+
+                
+            }
         }
         private void InsertData(string titletxt, string publishertxt, string yeartxt, int typeIdcmb)
         {
+            try
+            {
+
+            
             using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
             {
                 using (SQLiteCommand cmd = new SQLiteCommand())
@@ -79,9 +93,16 @@ namespace MovieSample
                     conn.Close();
                 }
             }
+            }
+            catch (Exception)
+            {
+
+                
+            }
         }
         public int CheckYear(string year)
         {
+
             int yr = int.Parse(year);
             if (yr >= 2100 || yr <= 1900)
             {
@@ -94,6 +115,10 @@ namespace MovieSample
         }
         internal void UpdateQury(string titletxt, string publishertxt, string yeartxt, int typeIdcmb)
         {
+            try
+            {
+
+           
                using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
             {
                 using (SQLiteCommand cmd = new SQLiteCommand())
@@ -103,10 +128,16 @@ namespace MovieSample
               
                     //cmd.CommandText = "insert into MovieDetails(`Title`,`Publisher`,`Year`,`typeID`)  values('" + titletxt + "','" + publishertxt + "','" + yeartxt + "','" + typeIdcmb + "');";
 
-                    cmd.CommandText = "UPDATE MovieDetails SET `Title` ='" + titletxt.Replace("'", "''") + "', `Year`='" + yeartxt + "', `Publisher`='" + publishertxt + "', `typeID`=" + typeIdcmb + " WHERE MovieDetails.movieID=" + Form1.movieID + "";
+                    cmd.CommandText = "UPDATE MovieDetails SET `Title` ='" + titletxt.Replace("'", "''") + "', `Year`='" + yeartxt + "', `Publisher`='" + publishertxt + "', `typeID`=" + typeIdcmb + " WHERE MovieDetails.movieID=" + MainForm.movieID + "";
                     int i = cmd.ExecuteNonQuery();
                     conn.Close();
                 }
+            }
+            }
+            catch (Exception)
+            {
+
+                
             }
         }
         }
