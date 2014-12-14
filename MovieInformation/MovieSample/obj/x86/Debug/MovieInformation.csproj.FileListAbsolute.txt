@@ -19,5 +19,6 @@ E:\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.csprojResolveAsse
 E:\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.Form1.resources
 E:\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.Properties.Resources.resources
 E:\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.csproj.GenerateResource.Cache
-E:\MovieInformation\MovieSample\bin\Debug\MovieDatabase
 E:\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.UpdateForm.resources
+E:\MovieInformation\MovieSample\bin\Debug\MovieDatabase
+E:\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.Form2.resources

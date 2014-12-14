@@ -24,6 +24,7 @@ namespace MovieSample
             DatabaseClass dataBaseObj = new DatabaseClass();
             dataBaseObj.InsertDataInDatabase(comUType.SelectedItem.ToString(), txtUTitle.Text.ToString(), txtUPublisher.Text.ToString(), txtUYear.Text.ToString(),"UPD");
             this.Close();
+            MessageBox.Show("Data Update Successfully", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //SelectQueryByTitle(queryString);
         }
 
