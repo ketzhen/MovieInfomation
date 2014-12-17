@@ -1,4 +1,4 @@
-﻿namespace MovieSample
+﻿namespace MovieInformation
 {
     partial class UpdateForm
     {
@@ -39,8 +39,8 @@
             this.txtUPublisher = new System.Windows.Forms.TextBox();
             this.txtUTitle = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.picBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUpdate
@@ -170,15 +170,15 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // picBox
+            // pictureBox1
             // 
-            this.picBox.Image = global::MovieSample.Properties.Resources._1418559535_1730021;
-            this.picBox.Location = new System.Drawing.Point(425, 2);
-            this.picBox.Name = "picBox";
-            this.picBox.Size = new System.Drawing.Size(32, 32);
-            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picBox.TabIndex = 25;
-            this.picBox.TabStop = false;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(413, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(44, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
             // 
             // UpdateForm
             // 
@@ -187,7 +187,7 @@
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(473, 203);
             this.ControlBox = false;
-            this.Controls.Add(this.picBox);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblUType);
@@ -206,7 +206,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Movie Record";
             this.Load += new System.EventHandler(this.UpdateForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -224,6 +224,6 @@
         public System.Windows.Forms.TextBox txtUPublisher;
         internal System.Windows.Forms.TextBox txtUTitle;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox picBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

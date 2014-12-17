@@ -1,0 +1,22 @@
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.Desktop.csprojResolveAssemblyReference.cache
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.MainForm.resources
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.Properties.Resources.resources
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.UpdateForm.resources
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.Desktop.csproj.GenerateResource.Cache
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.UpdateForm.resources
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\bin\Debug\MovieDatabase
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\bin\Debug\MovieInformation.exe.config
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\bin\Debug\MovieInformation.exe
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\bin\Debug\MovieInformation.pdb
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\bin\Debug\MovieInformation.DAL.dll
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\bin\Debug\MovieInformation.Interfaces.dll
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\bin\Debug\System.Data.SQLite.dll
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\bin\Debug\MovieInformation.DAL.pdb
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\bin\Debug\MovieInformation.Interfaces.pdb
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.MainForm.resources
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.Properties.Resources.resources
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.UpdateForm.resources
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.Desktop.csproj.GenerateResource.Cache
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.exe
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.pdb
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.Desktop.csprojResolveAssemblyReference.cache

@@ -1,0 +1,8 @@
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.Interfaces\bin\Debug\MovieInformation.Interfaces.dll
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.Interfaces\bin\Debug\MovieInformation.Interfaces.pdb
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.Interfaces\obj\Debug\MovieInformation.Interfaces.dll
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.Interfaces\obj\Debug\MovieInformation.Interfaces.pdb
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.Interfaces\bin\Debug\MovieInformation.Interfaces.dll
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.Interfaces\bin\Debug\MovieInformation.Interfaces.pdb
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.Interfaces\obj\Debug\MovieInformation.Interfaces.dll
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.Interfaces\obj\Debug\MovieInformation.Interfaces.pdb

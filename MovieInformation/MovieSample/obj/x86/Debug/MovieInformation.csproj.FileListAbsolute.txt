@@ -20,3 +20,20 @@ E:\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.UpdateForm.resources
 E:\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.csproj.GenerateResource.Cache
 E:\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.exe
 E:\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.pdb
+D:\16 movie code\MovieInformation\MovieSample\bin\Debug\MovieDatabase
+D:\16 movie code\MovieInformation\MovieSample\bin\Debug\MovieSample.exe.config
+D:\16 movie code\MovieInformation\MovieSample\bin\Debug\MovieSample.exe
+D:\16 movie code\MovieInformation\MovieSample\bin\Debug\MovieSample.pdb
+D:\16 movie code\MovieInformation\MovieSample\bin\Debug\System.Data.SQLite.dll
+D:\16 movie code\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.MainForm.resources
+D:\16 movie code\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.Properties.Resources.resources
+D:\16 movie code\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.UpdateForm.resources
+D:\16 movie code\MovieInformation\MovieSample\obj\x86\Debug\MovieInformation.csproj.GenerateResource.Cache
+D:\16 movie code\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.exe
+D:\16 movie code\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.pdb
+C:\Users\TECHPRO\Desktop\16MovieInformationSetup\MovieInformationCode\MovieInformation\MovieSample\bin\Debug\MovieSample.exe.config
+C:\Users\TECHPRO\Desktop\16MovieInformationSetup\MovieInformationCode\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.exe
+C:\Users\TECHPRO\Desktop\16MovieInformationSetup\MovieInformationCode\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.pdb
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieSample\bin\Debug\MovieSample.exe.config
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.exe
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieSample\obj\x86\Debug\MovieSample.pdb

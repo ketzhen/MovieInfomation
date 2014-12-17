@@ -1,0 +1,16 @@
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.DAL\obj\Debug\MovieInformation.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.DAL\bin\Debug\MovieInformation.DAL.dll
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.DAL\bin\Debug\MovieInformation.DAL.pdb
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.DAL\bin\Debug\MovieInformation.Interfaces.dll
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.DAL\bin\Debug\System.Data.SQLite.dll
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.DAL\bin\Debug\MovieInformation.Interfaces.pdb
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.DAL\obj\Debug\MovieInformation.DAL.dll
+C:\Users\Shakti\Desktop\MovieInformation\MovieInformation\MovieInformation.DAL\obj\Debug\MovieInformation.DAL.pdb
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.DAL\bin\Debug\MovieInformation.DAL.dll
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.DAL\bin\Debug\MovieInformation.DAL.pdb
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.DAL\bin\Debug\MovieInformation.Interfaces.dll
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.DAL\bin\Debug\System.Data.SQLite.dll
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.DAL\bin\Debug\MovieInformation.Interfaces.pdb
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.DAL\obj\Debug\MovieInformation.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.DAL\obj\Debug\MovieInformation.DAL.dll
+C:\Users\Jobseeder\Desktop\Sir code2\MovieInformation\MovieInformation.DAL\obj\Debug\MovieInformation.DAL.pdb

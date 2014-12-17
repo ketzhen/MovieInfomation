@@ -91,7 +91,6 @@
             this.tabPage1.Size = new System.Drawing.Size(898, 516);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Add movie Information";
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // gropAddMovieInformation
             // 
@@ -141,7 +140,6 @@
             this.lblType.Size = new System.Drawing.Size(48, 17);
             this.lblType.TabIndex = 19;
             this.lblType.Text = "Type: ";
-            this.lblType.Click += new System.EventHandler(this.lblType_Click);
             // 
             // lblYear
             // 
@@ -201,7 +199,6 @@
             this.txtYear.Name = "txtYear";
             this.txtYear.Size = new System.Drawing.Size(140, 23);
             this.txtYear.TabIndex = 14;
-            this.txtYear.TextChanged += new System.EventHandler(this.txtYear_TextChanged);
             this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // txtPublisher
@@ -330,6 +327,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             this.grdMovieDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.grdMovieDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.grdMovieDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdMovieDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.grdMovieDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -351,15 +351,14 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.grdMovieDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.grdMovieDataGrid.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grdMovieDataGrid.GridColor = System.Drawing.Color.Gray;
-            this.grdMovieDataGrid.Location = new System.Drawing.Point(3, 122);
+            this.grdMovieDataGrid.Location = new System.Drawing.Point(3, 125);
             this.grdMovieDataGrid.Name = "grdMovieDataGrid";
             this.grdMovieDataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdMovieDataGrid.RowHeadersVisible = false;
             this.grdMovieDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.grdMovieDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdMovieDataGrid.Size = new System.Drawing.Size(892, 391);
+            this.grdMovieDataGrid.Size = new System.Drawing.Size(892, 388);
             this.grdMovieDataGrid.TabIndex = 1;
             this.grdMovieDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 

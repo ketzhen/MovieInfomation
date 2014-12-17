@@ -8,29 +8,27 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SQLiteHelper;
+using MovieInformation;
 using System.Text.RegularExpressions;
+using MovieInformation.DAL;
+using MovieInformation.Interfaces;
 
 namespace MovieSample
 {
     public partial class MainForm : Form
     {
+        private IConfig _config;
+        private IDatabaseQuery _databaseQuery;
+        private IDataAccessor _dataAccessor;
+
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblType_Click(object sender, EventArgs e)
-        {
-
-        }
-        string dbFile = "data source=" + Path.Combine(Application.StartupPath, "MovieDatabase");
-        SQLiteDataReader sqlite_datareader;
+      
+        #region Tab colour setting here
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
 
@@ -53,232 +51,148 @@ namespace MovieSample
             e.Graphics.DrawString(tabControl1.TabPages[e.Index].Text, this.Font, SystemBrushes.HighlightText, paddedBounds);
         }
 
-        private void InsertData(string titletxt, string publishertxt, string yeartxt, int typeIdcmb)
-        {
-            try
-            {
-
-            
-            using (SQLiteConnection conn = new SQLiteConnection(dbFile))
-            {
-                using (SQLiteCommand cmd = new SQLiteCommand())
-                {
-                    cmd.Connection = conn;
-                    conn.Open();
-
-                    cmd.CommandText = "insert into MovieDetails(`Title`,`Publisher`,`Year`,`typeID`)  values('" + titletxt + "','" + publishertxt + "','" + yeartxt + "','" + typeIdcmb + "');";
-                    int i = cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-            }
-            }
-            catch (Exception)
-            {
-
-                
-            }
-        }
+        #endregion
         bool checkLoadData = false;
+        #region Page load and show the all data from database
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            _config = new Config();
+            _dataAccessor = DatabaseFactory.GetDataAccessor(_config);
+            _databaseQuery = DatabaseFactory.GetDatabaseQuery();
             try
             {
 
-            
-            cmbTypeSearchByType.SelectedIndex = 0;
-            cmbType.SelectedIndex = 0;
-            string loadAllDataQuery = "SELECT `MovieDetails`.`movieID`,`MovieDetails`.`Title`,`MovieDetails`.`Publisher`,`MovieDetails`.`Year`,(Select movietypes.`Type` from movietypes Where movietypes.typeID = MovieDetails.typeID ) As  `Type` FROM MovieDetails Order By `movieID`";
 
-            SelectQueryByTitle(loadAllDataQuery);
-            checkLoadData = true;
+                cmbTypeSearchByType.SelectedIndex = 0;
+                cmbType.SelectedIndex = 0;
+               // QueryClass queryClassObj = new QueryClass();
+                string loadAllDataQuery = _databaseQuery.LoadQuery();
+
+
+                SelectQueryByTitle(loadAllDataQuery);
+                checkLoadData = true;
             }
             catch (Exception)
             {
 
-                
+
             }
         }
 
+        #endregion
 
-
+        #region Save data into data base
         private void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
 
-          
-
-            if (!string.IsNullOrEmpty(txtTitle.Text) && !string.IsNullOrEmpty(txtYear.Text) && !string.IsNullOrEmpty(txtPublisher.Text) && cmbType.SelectedIndex > 0)
-            {
-                //bool isValidPrice = Regex.IsMatch(txtYear.Text, "^[0-9]");
-                //if (isValidPrice == true)
-                //{
-
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Please Enter Year", "Fomate", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    return;
-
-                //}
-
-                DatabaseClass dataBaseObj = new DatabaseClass();
-                dataBaseObj.InsertDataInDatabase(cmbType.SelectedItem.ToString(), txtTitle.Text.ToString(), txtPublisher.Text.ToString(), txtYear.Text.ToString(), "INS");
-                txtTitle.Clear();
-                txtPublisher.Clear();
-                txtYear.Clear();
-                cmbType.SelectedIndex = 0;
-                string loadAllDataQuery = "SELECT `MovieDetails`.`movieID`,`MovieDetails`.`Title`,`MovieDetails`.`Publisher`,`MovieDetails`.`Year`,(Select movietypes.`Type` from movietypes Where movietypes.typeID = MovieDetails.typeID ) As  `Type` FROM MovieDetails Order By `movieID`";
-                SelectQueryByTitle(loadAllDataQuery);
-            }
-            else
-            {
-                MessageBox.Show("Please Enter All Required Fields", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
 
 
-            }
+                if (!string.IsNullOrEmpty(txtTitle.Text) && !string.IsNullOrEmpty(txtYear.Text) && !string.IsNullOrEmpty(txtPublisher.Text) && cmbType.SelectedIndex > 0)
+                {
+
+
+                   // DatabaseClass dataBaseObj = new DatabaseClass();
+                    string message;
+                    if (_dataAccessor.InsertDataInDatabase(movieID, cmbType.SelectedItem.ToString(), txtTitle.Text,
+                                                           txtPublisher.Text, txtYear.Text, "INS",
+                                                           out message))
+                    {
+                        txtTitle.Clear();
+                        txtPublisher.Clear();
+                        txtYear.Clear();
+                        cmbType.SelectedIndex = 0;
+                        //QueryClass queryClassObj = new QueryClass();
+                        string loadAllDataQuery = _databaseQuery.InsertQuery();
+
+                        SelectQueryByTitle(loadAllDataQuery);
+                    }
+                    else
+                    {
+                        string loadAllDataQuery = _databaseQuery.LoadQuery();
+
+                        MessageBox.Show("Data Save Successfully", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtTitle.Clear();
+                        txtPublisher.Clear();
+                        txtYear.Clear();
+                        cmbType.SelectedIndex = 0;
+                        SelectQueryByTitle(loadAllDataQuery);
+                        
+                    }
+                  
+                }
+                else
+                {
+                    MessageBox.Show("Please Enter All Required Fields", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+
+
+                }
             }
             catch (Exception)
             {
 
-                
+
             }
 
 
         }
-
+        #endregion
 
         DataGridViewButtonColumn editButton;
         DataGridViewButtonColumn deleteButton;
-        DataTable data = null;
+        #region Show database data in UI
         private void SelectQueryByTitle(string searchQueryLocal)
         {
             try
             {
+                grdMovieDataGrid.DataSource = null;
 
-           
-            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
-            {
+                grdMovieDataGrid.Columns.Clear();
+              //  DatabaseClass dbclase = new DatabaseClass();
+                DataTable dt = _dataAccessor.GetMovieDetail(searchQueryLocal);
 
-                using (SQLiteCommand cmd = new SQLiteCommand())
+                if (dt.Rows.Count == 0 && checkLoadData == true)
                 {
-                    cmd.Connection = conn;
-                    conn.Open();
-
-                    //cmd.CommandText = "insert into MovieDetails(`Title`,`Publisher`,`Year`,`typeID`)  values();";
-                    // cmd.CommandText = "SELECT `Title` FROM MovieDetails";
-                    //cmd.CommandText = "SELECT `movieID``Title``Publisher``MovieYear``Type` FROM movie,movietype WHERE movietype.typeID = movie.typeID AND movie.title LIKE '" + txtTitleSearchByTitle.Text + "%'";
-                    cmd.CommandText = searchQueryLocal;
-
-                    //cmd.CommandText = "SELECT `MovieDetails`.`movieID`,`MovieDetails`.`Title`,`MovieDetails`.`Publisher`,`MovieDetails`.`Year`,`movietypes`.`Type` FROM MovieDetails,movietypes WHERE movietypes.typeID = MovieDetails.typeID AND `MovieDetails`.`title` LIKE '" + txtTitleSearchByTitle.Text + "%'";
-
-
-
-                    grdMovieDataGrid.DataSource = null;
-                    //SQLQuery.Connection = null;
-
-                    SQLiteDataAdapter dataAdapter = null;
-                    grdMovieDataGrid.Columns.Clear(); // <-- clear columns
-                    //---------------------------------
-                    //SQLQuery.CommandText = sqlQueryString;
-                    //SQLQuery.Connection = database;
-                    data = new DataTable();
-
-                    dataAdapter = new SQLiteDataAdapter(cmd);
-
-                    dataAdapter.Fill(data);
-                    if (data.Rows.Count == 0 && checkLoadData == true)
-                    {
-                        MessageBox.Show("No Data Found !!!", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    grdMovieDataGrid.DataSource = data;
-                    grdMovieDataGrid.AllowUserToAddRows = false; // remove the null line
-                    grdMovieDataGrid.ReadOnly = true;
-                    grdMovieDataGrid.Columns[0].Visible = false;
-
-                    //grdMovieDataGrid.Columns[1].Width = 250;
-
-                    //grdMovieDataGrid.Columns[2].Width = 160;
-
-                    //grdMovieDataGrid.Columns[3].Width = 60;
-
-                    //grdMovieDataGrid.Columns[4].Width = 100;
-
-                    // insert edit button into datagridview
-                    editButton = new DataGridViewButtonColumn();
-                    editButton.HeaderText = "Edit";
-                    editButton.Text = "Edit";
-                    editButton.UseColumnTextForButtonValue = true;
-                    editButton.Width = 80;
-                    grdMovieDataGrid.Columns.Add(editButton);
-
-                    // insert delete button to datagridview
-                    deleteButton = new DataGridViewButtonColumn();
-                    deleteButton.HeaderText = "Delete";
-                    deleteButton.Text = "Delete";
-                    deleteButton.UseColumnTextForButtonValue = true;
-                    deleteButton.Width = 80;
-                    grdMovieDataGrid.Columns.Add(deleteButton);
-                    grdMovieDataGrid.Refresh();
-
-                    conn.Close();
+                    MessageBox.Show("No Data Found !!!", "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
-            }
-            }
-            catch (Exception)
-            {
-
-                
-            }
-
-        }
-        private void SelectQueryByType()
-        {
-        }
+                grdMovieDataGrid.DataSource = dt;
+                grdMovieDataGrid.AllowUserToAddRows = false; // remove the null line
+                grdMovieDataGrid.ReadOnly = true;
+                grdMovieDataGrid.Columns[0].Visible = false;
 
 
+                editButton = new DataGridViewButtonColumn();
+                editButton.HeaderText = "Edit";
+                editButton.Text = "Edit";
+                editButton.UseColumnTextForButtonValue = true;
+                editButton.Width = 80;
+                grdMovieDataGrid.Columns.Add(editButton);
+
+                // insert delete button to datagridview
+                deleteButton = new DataGridViewButtonColumn();
+                deleteButton.HeaderText = "Delete";
+                deleteButton.Text = "Delete";
+                deleteButton.UseColumnTextForButtonValue = true;
+                deleteButton.Width = 80;
+                grdMovieDataGrid.Columns.Add(deleteButton);
+                grdMovieDataGrid.Refresh();
 
 
-        private void btnTitleSearchByTitle_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-
-           
-            string searchQuery = "SELECT `MovieDetails`.`movieID`,`MovieDetails`.`Title`,`MovieDetails`.`Publisher`,`MovieDetails`.`Year`,`movietypes`.`Type` FROM MovieDetails,movietypes WHERE movietypes.typeID = MovieDetails.typeID AND `MovieDetails`.`title` LIKE '" + txtTitleSearchByTitle.Text + "%'";
-            SelectQueryByTitle(searchQuery);
-            }
-            catch (Exception)
-            {
-
-                
-            }
-        }
-
-        private void btnTypeSearchByType_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-
-          
-            int type = 0;
-            string typeString = cmbTypeSearchByType.SelectedItem.ToString();
-            MovieType movieTypeObj = new MovieType();
-            type = movieTypeObj.MovieTypeMethod(typeString);
-
-
-            string searchQuery = "SELECT `MovieDetails`.`movieID`,`MovieDetails`.`Title`,`MovieDetails`.`Publisher`,`MovieDetails`.`Year`,`movietypes`.`Type` FROM MovieDetails,movietypes WHERE movietypes.typeID = MovieDetails.typeID AND MovieDetails.typeID ='" + type + "'";
-            SelectQueryByTitle(searchQuery);
             }
             catch (Exception)
             {
 
-                
+
             }
 
         }
+        #endregion
+
+
         public static int movieID;
         #region Delete/Edit button handling
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -286,219 +200,213 @@ namespace MovieSample
             try
             {
 
-           
-            using (SQLiteConnection conn = new SQLiteConnection(config.DataSource))
-            {
-                string queryString = "SELECT `MovieDetails`.`movieID`,`MovieDetails`.`Title`,`MovieDetails`.`Publisher`,`MovieDetails`.`Year`,`movietypes`.`Type` FROM MovieDetails,movietypes WHERE movietypes.typeID = MovieDetails.typeID";
 
-
-                int currentRow = int.Parse(e.RowIndex.ToString());
-                DataGridViewRow rowColl = null;
-                try
+                using (SQLiteConnection conn = new SQLiteConnection(_config.DataSource))
                 {
-                    rowColl = grdMovieDataGrid.Rows[currentRow];
-                    string movieIDString = rowColl.Cells["movieID"].Value.ToString();
-                    // string movieIDString =Convert.ToString( grdMovieDataGrid.Columns[0]);
-                    movieID = int.Parse(movieIDString);
-                }
-                catch (Exception ex) { }
-                // edit button
-                if (grdMovieDataGrid.Columns[e.ColumnIndex] == editButton && currentRow >= 0)
-                {
-                    string title = rowColl.Cells["Title"].Value.ToString();
-                    string publisher = rowColl.Cells["Publisher"].Value.ToString();
-                    //string previewed = dataGridView1[3, currentRow].Value.ToString();
-                    string year = rowColl.Cells["Year"].Value.ToString();
-                    string type = rowColl.Cells["Type"].Value.ToString();
-                    //runs form 2 for editing    
-                    UpdateForm updateObj = new UpdateForm();
-                    updateObj.txtUTitle.Text = title;
-                    updateObj.txtUPublisher.Text = publisher;
-                    updateObj.txtUYear.Text = year;
-                    updateObj.comUType.Text = type;
-                    //updateObj.movieID = movieIDInt;
-                    updateObj.ShowDialog();
-                    SelectQueryByTitle(queryString);
-                    grdMovieDataGrid.Update();
-                    grdMovieDataGrid.Refresh();
+                    //QueryClass queryClassObj = new QueryClass();
+                    string queryString = _databaseQuery.SelectQuery();
 
-                }
 
-                else if (grdMovieDataGrid.Columns[e.ColumnIndex] == deleteButton && currentRow >= 0)
-                {
-                    // delete sql query
-                    string queryDeleteString = "DELETE FROM MovieDetails where `movieID` = " + movieID + "";
-                    conn.Open();
-                    SQLiteCommand sqlDelete = new SQLiteCommand();
-                    sqlDelete.CommandText = queryDeleteString;
-                    sqlDelete.Connection = conn;
-                    sqlDelete.ExecuteNonQuery();
-                    conn.Close();
-                    MessageBox.Show("Data Delete Successfully", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    SelectQueryByTitle(queryString);
+
+                    int currentRow = int.Parse(e.RowIndex.ToString());
+                    DataGridViewRow rowColl = null;
+                    try
+                    {
+                        rowColl = grdMovieDataGrid.Rows[currentRow];
+                        string movieIDString = rowColl.Cells["movieID"].Value.ToString();
+
+                        movieID = int.Parse(movieIDString);
+                    }
+                    catch (Exception ex) { }
+                    // edit button
+                    if (grdMovieDataGrid.Columns[e.ColumnIndex] == editButton && currentRow >= 0)
+                    {
+                        string title = rowColl.Cells["Title"].Value.ToString();
+                        string publisher = rowColl.Cells["Publisher"].Value.ToString();
+
+                        string year = rowColl.Cells["Year"].Value.ToString();
+                        string type = rowColl.Cells["Type"].Value.ToString();
+
+                        UpdateForm updateObj = new UpdateForm();
+                        updateObj.txtUTitle.Text = title;
+                        updateObj.txtUPublisher.Text = publisher;
+                        updateObj.txtUYear.Text = year;
+                        updateObj.comUType.Text = type;
+
+                        updateObj.ShowDialog();
+                        SelectQueryByTitle(queryString);
+                        grdMovieDataGrid.Update();
+                        grdMovieDataGrid.Refresh();
+
+                    }
+
+                    else if (grdMovieDataGrid.Columns[e.ColumnIndex] == deleteButton && currentRow >= 0)
+                    {
+                        // delete sql query
+                       // QueryClass queryClassObjDelete = new QueryClass();
+                        string queryDeleteString = _databaseQuery.DeleteQuery(movieID);
+
+                        conn.Open();
+                        SQLiteCommand sqlDelete = new SQLiteCommand();
+                        sqlDelete.CommandText = queryDeleteString;
+                        sqlDelete.Connection = conn;
+                        sqlDelete.ExecuteNonQuery();
+                        conn.Close();
+                        MessageBox.Show("Data Delete Successfully", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        SelectQueryByTitle(queryString);
+                    }
                 }
-            }
             }
             catch (Exception)
             {
 
-                
+
             }
 
         }
         #endregion
-
+        #region Save movie details in data base
         private void btnTitleSearchByTitle_Click(object sender, EventArgs e)
         {
             try
             {
 
-           
-            if (!string.IsNullOrEmpty(txtTitleSearchByTitle.Text))
-            {
-                string searchQuery = "SELECT `MovieDetails`.`movieID`,`MovieDetails`.`Title`,`MovieDetails`.`Publisher`,`MovieDetails`.`Year`,`movietypes`.`Type` FROM MovieDetails,movietypes WHERE movietypes.typeID = MovieDetails.typeID AND `MovieDetails`.`title` LIKE '" + txtTitleSearchByTitle.Text + "%'";
-                SelectQueryByTitle(searchQuery);
-                txtTitleSearchByTitle.Clear();
-            }
-            else if (!string.IsNullOrEmpty(cmbTypeSearchByType.Text))
-            {
-                int type = 0;
-                string typeString = cmbTypeSearchByType.SelectedItem.ToString();
-                MovieType movieTypeObj = new MovieType();
-                type = movieTypeObj.MovieTypeMethod(typeString);
 
-                string searchQuery = "SELECT `MovieDetails`.`movieID`,`MovieDetails`.`Title`,`MovieDetails`.`Publisher`,`MovieDetails`.`Year`,`movietypes`.`Type` FROM MovieDetails,movietypes WHERE movietypes.typeID = MovieDetails.typeID AND MovieDetails.typeID ='" + type + "'";
-                SelectQueryByTitle(searchQuery);
-                cmbTypeSearchByType.SelectedIndex = 0;
-            }
+                if (!string.IsNullOrEmpty(txtTitleSearchByTitle.Text))
+                {
+                    //QueryClass queryClassObj = new QueryClass();
+                    string searchQuery = _databaseQuery.SearchByTitle(txtTitleSearchByTitle.Text);
+
+                    SelectQueryByTitle(searchQuery);
+                    txtTitleSearchByTitle.Clear();
+                }
+                else if (!string.IsNullOrEmpty(cmbTypeSearchByType.Text))
+                {
+                    int type = 0;
+                    string typeString = cmbTypeSearchByType.SelectedItem.ToString();
+                    MovieTypeEnum movieTypeObj;
+                    //Need to get the underlying value for enum using Enum.TryParse
+                    Enum.TryParse(typeString, out movieTypeObj);
+                    string searchQuery = _databaseQuery.SearchByType((int)movieTypeObj);
+
+                    SelectQueryByTitle(searchQuery);
+                    cmbTypeSearchByType.SelectedIndex = 0;
+                }
             }
             catch (Exception)
             {
 
-               
+
             }
 
         }
-
+        #endregion
+        #region Search by title changed event
         private void txtTitleSearchByTitle_TextChanged(object sender, EventArgs e)
         {
             try
             {
 
-           
 
-            if (cmbTypeSearchByType.SelectedIndex == 0)
-            {
 
-            }
-            else if (!string.IsNullOrEmpty(txtTitleSearchByTitle.Text))
-            {
-                txtTitleSearchByTitle.Clear();
+                if (cmbTypeSearchByType.SelectedIndex == 0)
+                {
 
-                MessageBox.Show("You Can Search One Type At A Time !!!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (!string.IsNullOrEmpty(txtTitleSearchByTitle.Text))
+                {
+                    txtTitleSearchByTitle.Clear();
 
-                return;
+                    MessageBox.Show("You Can Search One Type At A Time !!!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            }
+                    return;
+
+                }
             }
             catch (Exception)
             {
 
-                
+
             }
         }
-
+        #endregion
+        #region Search by type changed event
         private void cmbTypeSearchByType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
 
-            
-            if (string.IsNullOrEmpty(txtTitleSearchByTitle.Text))
-            {
+
+                if (string.IsNullOrEmpty(txtTitleSearchByTitle.Text))
+                {
 
 
-            }
-            else if (cmbTypeSearchByType.SelectedIndex > 0)
-            {
+                }
+                else if (cmbTypeSearchByType.SelectedIndex > 0)
+                {
 
-                cmbTypeSearchByType.SelectedIndex = 0;
+                    cmbTypeSearchByType.SelectedIndex = 0;
 
 
-                MessageBox.Show("You Can Search One Type At A Time !!!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You Can Search One Type At A Time !!!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                return;
+                    return;
 
-            }
+                }
             }
             catch (Exception)
             {
 
-                
+
             }
 
         }
 
-        private void txtYear_TextChanged(object sender, EventArgs e)
-        {
-            //string yearValue = txtYear.Text;
-
-            //bool isValidPrice = Regex.IsMatch(yearValue, "^[0-9]");
-            //if (isValidPrice == true)
-            //{
-
-            //}
-            //else if (!string.IsNullOrEmpty(txtYear.Text))
-            //{
-            //    MessageBox.Show("Please Enter Year", "Fomate", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    return;
-
-            //}
-        }
-
+        #endregion
+        #region check Year formate Validation
         private void txtYear_KeyPress(object sender, KeyPressEventArgs e)
         {
             try
             {
 
-           
-            if (e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == '\b') //The  character represents a backspace
-            {
-                e.Handled = false; //Do not reject the input
-            }
-           
-            else
-            {
-                if (e.KeyChar == ')' && !txtYear.Text.Contains(")"))
+
+                if (e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == '\b') //The  character represents a backspace
                 {
                     e.Handled = false; //Do not reject the input
                 }
-                else if (e.KeyChar == '(' && !txtYear.Text.Contains("("))
-                {
-                    e.Handled = false; //Do not reject the input
-                }
-                else if (e.KeyChar == '-' && !txtYear.Text.Contains("-"))
-                {
-                    e.Handled = false; //Do not reject the input
-                }
-                else if (e.KeyChar == ' ' && !txtYear.Text.Contains(" "))
-                {
-                    e.Handled = false; //Do not reject the input
-                }
+
                 else
                 {
-                    e.Handled = true;
+                    if (e.KeyChar == ')' && !txtYear.Text.Contains(")"))
+                    {
+                        e.Handled = false; //Do not reject the input
+                    }
+                    else if (e.KeyChar == '(' && !txtYear.Text.Contains("("))
+                    {
+                        e.Handled = false; //Do not reject the input
+                    }
+                    else if (e.KeyChar == '-' && !txtYear.Text.Contains("-"))
+                    {
+                        e.Handled = false; //Do not reject the input
+                    }
+                    else if (e.KeyChar == ' ' && !txtYear.Text.Contains(" "))
+                    {
+                        e.Handled = false; //Do not reject the input
+                    }
+                    else
+                    {
+                        e.Handled = true;
+                    }
                 }
-            }
             }
             catch (Exception)
             {
 
-                
+
             }
         }
 
-
+        #endregion
 
 
 

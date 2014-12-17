@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Forms;
+using MovieInformation.Interfaces;
 
-namespace SQLiteHelper
+namespace MovieInformation
 {
-    class config
+    /// <summary>
+    /// Gives access to data source
+    /// </summary>
+    class Config : IConfig
     {
-
-        public static string DatabaseFile =Path.Combine(Application.StartupPath, "MovieDatabase");
-        public static string DataSource
+        public string DatabaseFile = Path.Combine(Application.StartupPath, "MovieDatabase");
+        public string DataSource
         {
             get
             {
